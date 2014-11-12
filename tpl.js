@@ -1,12 +1,12 @@
-// RequireJS UnderscoreJS template plugin
-// http://github.com/jfparadis/requirejs-tpl
+// RequireJS lodash template plugin
+// http://github.com/etlgfx/requirejs-tpl
 //
 // An alternative to http://github.com/ZeeAgency/requirejs-tpl
 //
-// Using UnderscoreJS micro-templates at http://underscorejs.org/#template
+// Using lodash micro-templates at http://lodash.com/docs#template
 // Using and RequireJS text.js at http://requirejs.org/docs/api.html#text
-// @author JF Paradis
-// @version 0.0.2
+// @author JF Paradis, etlgfx
+// @version 0.1.0
 //
 // Released under the MIT license
 //
@@ -31,11 +31,12 @@
 /*jslint nomen: true */
 /*global define: false */
 
-define(['text', 'underscore'], function (text, _) {
+define(['text', 'lodash'], function (text, _) {
+
     'use strict';
 
     var buildMap = {},
-        buildTemplateSource = "define('{pluginName}!{moduleName}', function () { return {source}; });\n";
+        buildTemplateSource = "define('{pluginName}!{moduleName}', ['lodash'], function (_) { return {source}; });\n";
 
     return {
         version: '0.0.2',
@@ -43,11 +44,13 @@ define(['text', 'underscore'], function (text, _) {
         load: function (moduleName, parentRequire, onload, config) {
             if (buildMap[moduleName]) {
                 onload(buildMap[moduleName]);
+            }
+            else {
+                var ext = (config.tpl && config.tpl.extension) || '.html',
+                    path = (config.tpl && config.tpl.path) || '',
+                    filename = path + moduleName + (moduleName.indexOf(ext, moduleName.length - ext.length) !== -1 ? '' : ext);
 
-            } else {
-                var ext = (config.tpl && config.tpl.extension) || '.html';
-                var path = (config.tpl && config.tpl.path) || '';
-                text.load(path + moduleName + ext, parentRequire, function (source) {
+                text.load(filename, parentRequire, function (source) {
                     buildMap[moduleName] = _.template(source);
                     onload(buildMap[moduleName]);
                 }, config);
@@ -57,12 +60,15 @@ define(['text', 'underscore'], function (text, _) {
         write: function (pluginName, moduleName, write) {
             var build = buildMap[moduleName],
                 source = build && build.source;
+
             if (source) {
-                write.asModule(pluginName + '!' + moduleName,
+                write.asModule(
+                    pluginName + '!' + moduleName,
                     buildTemplateSource
-                    .replace('{pluginName}', pluginName)
-                    .replace('{moduleName}', moduleName)
-                    .replace('{source}', source));
+                        .replace('{pluginName}', pluginName)
+                        .replace('{moduleName}', moduleName)
+                        .replace('{source}', source)
+                );
             }
         }
     };

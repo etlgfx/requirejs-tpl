@@ -1,11 +1,11 @@
 requirejs-tpl
 =============
 
-This is an AMD loader for [UnderscoreJS micro-templates](http://underscorejs.org/#template) which can be used as a drop-in replacement to [ZeeAgency/requirejs-tpl](http://github.com/ZeeAgency/requirejs-tpl)
+This is an AMD loader for [Lodash micro-templates](http://lodash.com/docs#template) which can be used as a (almost) drop-in replacement to [ZeeAgency/requirejs-tpl](http://github.com/ZeeAgency/requirejs-tpl)
 
 ## Overview
 
-- Uses the ``_.template()`` engine maintained by the UnderscoreJS team.
+- Uses the ``_.template()`` engine maintained by the Lodash team.
 - Uses the official ``text`` loader plugin maintained by the RequireJS team.
 - You don't have to specify the template file extension (``.html is assumed``, but this is configurable).
 
@@ -23,24 +23,27 @@ Notes:
 - Updated require.js to 2.1.8 , and r.js to 2.1.8
 - Updated underscore.js to 1.5.2
 
+0.1.0
+- [etlgfx] moved from Underscore to Lodash
+- [etlgfx] made file extensions smarter
+- [etlgfx] removed extraneous files from repo
+
+
 ## Installation
 
-Download UnderscoreJS and RequireJS-text:
-
-- [UndescoreJS](http://underscorejs.org)
-- [RequireJS-text](http://requirejs.org/docs/download.html#text)
-
-Typically, you would place them in a ``scripts/libs`` folder then create a ``scripts/main.js`` file to alias them and to shim UndescoreJS:
-
 ```
+bower install lodash
+bower install require.js
+bower install git://github.com/etlgfx/requirejs-tpl.git
+
 require.config({
   paths: {
-    underscore: 'libs/underscore',
+    lodash: 'libs/lodash',
     text: 'libs/text'
     tpl: 'libs/tpl'
   },
   shim: {
-    'underscore': {
+    'lodash': {
       exports: '_'
     }
   }
@@ -61,6 +64,7 @@ require(['backbone', 'tpl!template'], function (Backbone, template) {
   });
 });
 ```
+
 ## Customization
 
 You can specify the template file extension in your main.js:
@@ -87,7 +91,7 @@ Optimization brings three benefits to a project:
 
 The most important build options are:
 
-```stubModules: ['underscore', 'text', 'tpl']```
+```stubModules: ['lodash', 'text', 'tpl']```
 
 The list of modules to stub out in the optimized file, i.e. the code is replaced with ``define('module',{});`` by ``r.js``
 
@@ -103,35 +107,9 @@ Copy the ``example`` and ``example-build`` folders to your web server (``text`` 
 
 ### Using a test server
 
-Alternatively, you can use Connect and NodeJS to spin a web server:
-
-Install ``connect`` using ``npm`` and launch the server with NodeJS:
-
-```
-  $ npm install -g connect
-  $ npm link connect
-  $ node server.js
-```
-
-Go to [http://localhost:9000/example](http://localhost:9000/example). Your browser should load:
-
-- index.html
-- require.js
-- main.js
-- tpl.js
-- underscore.js
-- text.js
-- message.html
-
-Go to [http://localhost:9000/example-build](http://localhost:9000/example-build). Your browser should load:
-
-- index.html
-- require.js
-- main.js
+Try using Gulp - TODO document
 
 
 
-
-
-
-
+##
+TODO improve & update this document for my stripped down version of this lib
