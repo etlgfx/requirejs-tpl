@@ -1,0 +1,10 @@
+{
+    "name": "require-tpl",
+    "version": "0.1.0",
+    "main": "tpl.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/etlgfx/require-tpl.git"
+    }
+}
