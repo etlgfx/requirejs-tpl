@@ -20,9 +20,7 @@
             "web": "http://github.com/etlgfx"
         }
     ],
-    "dependencies": {
-        "http://github.com/etlgfx/requirejs-tpl": "master"
-    },
+    "dependencies": {},
     "bugs": {
         "url": "https://github.com/etlgfx/requirejs-tpl/issues"
     },
