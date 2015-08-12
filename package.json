@@ -1,0 +1,42 @@
+{
+    "name": "requirejs-tpl",
+    "description": "RequireJS UnderscoreJS template plugin",
+    "version": "0.1.0",
+    "keywords": [
+        "requirejs",
+        "lodash",
+        "template",
+        "javascript"
+    ],
+    "maintainers": [
+        {
+            "name": "Jean-Francois Paradis",
+            "twitter": "@jfparadis",
+            "web": "http://www.jeanfrancoisparadis.com"
+        },
+        {
+            "name": "Eric Liang",
+            "twitter": "@etlgfx",
+            "web": "http://github.com/etlgfx"
+        }
+    ],
+    "dependencies": {
+        "http://github.com/etlgfx/requirejs-tpl": "master"
+    },
+    "bugs": {
+        "url": "https://github.com/etlgfx/requirejs-tpl/issues"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:etlgfx/requirejs-tpl.git"
+            }
+    ],
+    "licenses": [
+        {
+            "name": "MIT",
+            "url": "http://www.opensource.org/licenses/mit-license.php"
+        }
+    ],
+    "homepage": "http://github.com/etlgfx/requirejs-tpl"
+}
